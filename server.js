@@ -5,8 +5,16 @@ app.set('view engine', 'pug')
 
 app.use(express.static('public'))
 
-app.get(['/', '/signup'], function(req, res) {
-    res.render('index')
+app.get(['/', '/signup', '/signin'], function(req, res) {
+    res.render('index', { title: 'Platzigram'})
+})
+
+app.get(['/signup'], function(req, res) {
+    res.render('index', { title: 'Platzigram | Sign Up'})
+})
+
+app.get(['/signin'], function(req, res) {
+    res.render('index', { title: 'Platzigram | Sign In'})
 })
 
 app.listen(3000, function(err){

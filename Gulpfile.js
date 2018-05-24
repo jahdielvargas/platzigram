@@ -24,6 +24,7 @@ function compile(watch){
 		bundle
 			.transform(babel, { presets: ['env']})
 			.bundle()
+			.on('error', function(err) {console.log(err); this.emit('end')})
 			.pipe(source('index.js'))
 			.pipe(rename('app.js'))
 			.pipe(gulp.dest('public'))
