@@ -13,7 +13,8 @@ page('/', function (ctx, next) {
       },
       url: 'office.jpg',
       likes: 10,
-      liked: true
+      liked: true,
+      createdAt: new Date()
     },
     {
       user: {
@@ -22,7 +23,8 @@ page('/', function (ctx, next) {
       },
       url: 'office.jpg',
       likes: 2,
-      liked: true
+      liked: true,
+      createdAt: new Date(2018, 4, 22)
     }
   ]
   empty(main).appendChild(template(pictures))

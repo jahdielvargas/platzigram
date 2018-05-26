@@ -1,9 +1,14 @@
 var yo = require('yo-yo')
+var IntlRelativeFormat = window.IntlRelativeFormat = require('intl-relativeformat')
 
+require('intl-relativeformat/dist/locale-data/en.js')
+require('intl-relativeformat/dist/locale-data/es.js')
+
+var rf = new IntlRelativeFormat('es')
 module.exports = function pictureCard(pic){
   var el = render(pic)
-  function render(pictures) {
-    return yo`<div class="card ${pictures.liked ? 'liked' : ''}">
+  function render(pic) {
+    return yo`<div class="card ${pic.liked ? 'liked' : ''}">
       <div class="card-image">
         <img class="activator" src="${pic.url}">
       </div>
@@ -12,7 +17,7 @@ module.exports = function pictureCard(pic){
           <img src="${pic.user.avatar}" class="avatar" alt="avatar"/>
           <span class="username">${pic.user.username}</span>
         </a>
-        <small class="right time">Hace 1 día</small>
+        <small class="right time">${rf.format(pic.createdAt)}</small>
         <p>
           <a class="left" href="#" onclick="${like.bind(null, true)}"><i class="far fa-heart"></i></a>
           <a class="left" href="#" onclick="${like.bind(null, false)}"><i class="fas fa-heart"></i></a>
