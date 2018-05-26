@@ -1,8 +1,7 @@
 var yo = require('yo-yo');
 
 module.exports = function layout(content) {
-  return yo`
-  <div>
+  return yo`<div>
     <nav class="header">
       <div class="nav-wrapper">
         <div class="container">

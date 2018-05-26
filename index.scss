@@ -13,6 +13,7 @@ body {
   // #main-container {
   //   margin: 30px auto;
   // }
+
   .landing{
     margin: 30px auto;
   }
@@ -68,4 +69,58 @@ body {
     color: $secondary-color;
     box-shadow: none;
     border: 1px solid #EDEEEE;
+  }
+
+  .timeline{
+    padding: 30px 0;
+  }
+
+  $avatar-size: 48px;
+
+  .avatar{
+    width: $avatar-size;
+    height: $avatar-size;
+    border-radius: 50%;
+    float: left;
+    margin-right: 12px;
+  }
+
+  .card .username{
+    color: $secondary-color;
+    line-height: $avatar-size 
+  }
+
+  .card small.time{
+    line-height: $avatar-size;
+  }
+
+  .card p{
+    padding: 20px 0;
+  }
+
+  .card .likes{
+    line-height: 30px;
+    margin-left: 12px;
+  }
+
+  .card i{
+    font-size: 30px;
+  }
+
+  .card .far.fa-heart{
+    color: $secondary-color;
+  }
+
+  .card .fas.fa-heart{
+    color: #F44336;
+    display: none;
+  }
+
+  .card.liked{
+    .fas.fa-heart{
+      display: block;
+    }
+    .far.fa-heart{
+      display: none;
+    }
   }
