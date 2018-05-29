@@ -12,13 +12,16 @@ page('/', header, loadPictures, function (ctx, next) {
 })
 
 function loadPictures(ctx, next) {
-  axios
-    .get('/api/pictures')
-    .then(function (res) {
-      ctx.pictures = res.data;
-      next();
+  fetch('/api/pictures')
+    .then(function(res){
+      return res.json()
     })
-    .catch(function (err) {
-      console.log(err);
+    .then(function (pictures){
+      ctx.pictures = pictures
+      next()
+      console.log('fecth')
+    })
+    .catch(function (err){
+      console.log(err)
     })
 }
