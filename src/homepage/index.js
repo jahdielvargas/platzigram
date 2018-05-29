@@ -3,6 +3,7 @@ var empty = require('empty-element')
 var template = require('./template')
 var request = require('superagent')
 var header = require('../header')
+var axios = require('axios')
 
 page('/', header, loadPictures, function (ctx, next) {
   document.title = 'Platzigram'
@@ -10,13 +11,14 @@ page('/', header, loadPictures, function (ctx, next) {
   empty(main).appendChild(template(ctx.pictures))
 })
 
-
-function loadPictures(ctx, next){
-  request
+function loadPictures(ctx, next) {
+  axios
     .get('/api/pictures')
-    .end(function (err, res){
-      if(err) return console.log(err)
-      ctx.pictures = res.body
-      next()
+    .then(function (res) {
+      ctx.pictures = res.data;
+      next();
+    })
+    .catch(function (err) {
+      console.log(err);
     })
 }
