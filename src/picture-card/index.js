@@ -24,7 +24,7 @@ module.exports = function pictureCard(pic){
   function like(liked) {
     pic.liked = liked
     pic.likes += liked ? 1 : -1
-    var newEl=render(pic);
+    var newEl =render(pic)
     yo.update(el, newEl)
     return false
   }
