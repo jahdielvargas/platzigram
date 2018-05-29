@@ -1,4 +1,5 @@
 var page = require('page')
+require('regenerator-runtime/runtime')
 
 require('./homepage')
 require('./signup')

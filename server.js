@@ -37,7 +37,7 @@ app.get('/api/pictures', function (req, res){
             url: 'office.jpg',
             likes: 1,
             liked: true,
-            createdAt: +new Date(2018, 4, 22).getTime()
+            createdAt: new Date(2018, 4, 22).getTime()
         }
         ]
     setTimeout( function () {
