@@ -4,9 +4,10 @@ var template = require('./template')
 var request = require('superagent')
 var header = require('../header')
 var axios = require('axios')
+var loading = require('../loading')
 
 
-page('/', header, asyncLoad, function (ctx, next) {
+page('/', header, loading, asyncLoad, function (ctx, next) {
   document.title = 'Platzigram'
   var main = document.getElementById('main-container')
   empty(main).appendChild(template(ctx.pictures))

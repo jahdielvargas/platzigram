@@ -2,7 +2,7 @@ $secondary-color: #125688;
 $platzigram-red: #f44336;
 
 @import "node_modules/materialize-css/sass/materialize.scss";
-
+@import "./loader";
 @import url('https://fonts.googleapis.com/css?family=Montserrat|Oleo+Script');
 
 body {
@@ -108,6 +108,10 @@ body {
     font-size: 30px;
   }
 
+  .card .card-image img{
+    background-color: #F2F2F2;
+  }
+
   .card .far.fa-heart{
     color: $secondary-color;
   }
@@ -163,7 +167,6 @@ body {
       height: 400px;
       margin-bottom: 20px;
       position: relative;
-  
       &:hover {
         .picture {
           filter: blur(5px) grayscale(100%);
