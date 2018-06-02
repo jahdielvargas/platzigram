@@ -19,19 +19,19 @@ app.set('view engine', 'pug')
 app.use(express.static('public'))
 
 app.get(['/'], function(req, res) {
-    res.render('index', { title: 'Platzigram'})
+    res.render('index')
 })
 
 app.get(['/signup'], function(req, res) {
-    res.render('index', { title: 'Platzigram | Sign Up'})
+    res.render('index')
 })
 
 app.get(['/signin'], function(req, res) {
-    res.render('index', { title: 'Platzigram | Sign In'})
+    res.render('index')
 })
 
 app.get('/api/pictures', function (req, res){
-    var pictures = [
+    const pictures = [
         {
             user: {
             username: 'vargas',
@@ -40,7 +40,7 @@ app.get('/api/pictures', function (req, res){
             url: 'office.jpg',
             likes: 0,
             liked: false,
-            createdAt: new Date().getTime()
+            createdAt: +new Date()
         },
         {
             user: {
@@ -50,12 +50,10 @@ app.get('/api/pictures', function (req, res){
             url: 'office.jpg',
             likes: 1,
             liked: true,
-            createdAt: new Date(2018, 4, 22).getTime()
+            createdAt: +new Date(2018, 4, 22)
         }
         ]
-    setTimeout( function () {
-        res.send(pictures)
-    }, 2000)
+    res.send(pictures)
 })
 
 app.post('/api/pictures', function (req, res) {
@@ -66,6 +64,55 @@ app.post('/api/pictures', function (req, res) {
         res.send('File Uploaded :)')
     })
 })
+
+app.get('/api/user/:username', (req, res) => {
+    const user = {
+      username: 'platzi',
+      avatar: 'https://scontent-mia3-1.xx.fbcdn.net/v/t1.0-9/17190415_1876755205936165_4415297318093384407_n.jpg?_nc_cat=0&oh=9859194a8847be28b58dbfaee37460d7&oe=5B807A4D',
+      pictures: [
+        {
+          id: 1,
+          src: 'https://images.pexels.com/photos/566888/pexels-photo-566888.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+          likes: 3
+        },
+        {
+          id: 2,
+          src: 'https://images.pexels.com/photos/1128240/pexels-photo-1128240.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+          likes: 1
+        },
+        {
+          id: 3,
+          src: 'https://images.pexels.com/photos/70862/pexels-photo-70862.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+          likes: 10
+        },
+        {
+          id: 4,
+          src: 'https://images.pexels.com/photos/450271/pexels-photo-450271.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+          likes: 0
+        },
+        {
+          id: 5,
+          src: 'https://images.pexels.com/photos/121627/pexels-photo-121627.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+          likes: 23
+        },
+        {
+          id: 6,
+          src: 'https://images.pexels.com/photos/967016/pexels-photo-967016.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+          likes: 11
+        }
+      ]
+    }
+    res.send(user);
+})  
+
+app.get('/:username', function (req, res) {
+    res.render('index', { title: `Platzigram - ${req.params.username}` })
+})  
+
+app.get('/:username/:id', function (req, res) {
+    res.render('index', { title: `Platzigram - ${req.params.username}` })
+})
+
 app.listen(3000, function(err){
     if(err) return console.log('Error'), process.exit(1)
     console.log('Escuchando en el puerto 3000')
